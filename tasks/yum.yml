@@ -1,0 +1,22 @@
+- name: install the latest version of Apache
+  yum:
+    name: httpd
+    state: latest
+
+- name: Install Common Libraries from CentOS mirror
+  yum:
+   name: {{ item }}
+   sate: present
+  with_items:
+   - vim
+   - gcc
+   - gcc-c++
+   - autoconf
+   - automake
+   - libxml2-devel
+   - unzip
+   - zip
+   - htop
+   - wget
+   - tar
+   

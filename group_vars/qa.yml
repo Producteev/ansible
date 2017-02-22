@@ -1,0 +1,4 @@
+# group_vars/qa
+
+---
+domain_name: qa.producteev.com

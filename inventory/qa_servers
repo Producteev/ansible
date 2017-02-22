@@ -1,0 +1,11 @@
+; inventories/qa_servers
+
+[web]
+qa-web
+
+[worker]
+qa-worker
+
+[qa:children]
+web
+worker
