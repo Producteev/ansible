@@ -1,20 +1,11 @@
 
 - name: Check Environment
   {% if prod in {{inventory_hostname}} %}
-  - hosts: prod
-    - roles:
-        - webserver
-        - workerserver
+  env: prod
   {% elif qa in {{inventory_hostname}} %}
-  - hosts: qa
-    - roles:
-        - webservers
-        - workerserver
+  env: qa
   {% if dev in {{inventory_hostname}} %}
-  - hosts: dev
-    - roles:
-        - webserver
-        - workerserver
+  env: dev
   {% endif %}  
 
   

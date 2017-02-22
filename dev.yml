@@ -1,5 +1,4 @@
 ---
-- hosts: prod
   domain_name: dev.producteev.com
   role:
     - webserver
