@@ -1,5 +1,3 @@
-# group_vars/prod
-
 ---
 - hosts: prod
   roles:

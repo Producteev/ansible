@@ -1,9 +1,7 @@
-# group_vars/prod
-
 ---
 - hosts: prod
-  roles:
+  domain_name: dev.producteev.com
+  role:
     - webserver
     - workerserver
-    
 
