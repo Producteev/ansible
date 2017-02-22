@@ -1,7 +1,4 @@
 ---
-- hosts: prod
-  roles:
-    - webserver
-    - workerserver
-    
+roles:
+  - prod  
 

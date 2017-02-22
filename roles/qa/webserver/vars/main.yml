@@ -1,0 +1,15 @@
+---
+apache_user: apache
+apache_group: apache
+
+{% if qa in {{inventory_hostname}} %}
+env: qa
+
+{% elif qa in {{inventory_hostname}} %}
+env: qa
+
+{% if dev in {{inventory_hostname}} %}
+env: dev
+
+{% endif %}
+
