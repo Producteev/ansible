@@ -1,0 +1,12 @@
+#!/bin/bash -ex
+
+# install needed packages for ansible 
+yum install -y git ansible
+
+#Get Producteev ansible playbook
+git clone git@github.com:Producteev/ansible.git
+
+cd ./ansible
+ansible-playbook main_env.yml
+
+exit 0

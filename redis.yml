@@ -1,0 +1,16 @@
+- name: Download Dependencies1
+  get_url:
+    url: http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+    dest: /opt/epel-release-6-8.noarch.rpm
+    mode: 0775 
+
+- name: Download Dependencies2
+  get_url:
+    url: http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
+    dest: /opt/remi-release-6.rpm
+    mode: 0775
+
+- name: Install Redis
+  yum:
+    name: redis
+    state: latest
