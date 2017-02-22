@@ -1,4 +1,0 @@
-vars:
-  apache_vhosts:
-    - {servername: "www.domain.tld", documentroot: "/var/www/dev_producteev.com"}
-    - {servername: "www.otherdomain.tld", documentroot: "/var/www/dev_producteev.com", serveradmin: "webmaster@otherdomain.tld"}

@@ -1,9 +1,0 @@
-# group_vars/prod
-
----
-- hosts: prod
-  roles:
-    - webserver
-    - workerserver
-    
-
