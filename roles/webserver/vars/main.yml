@@ -1,0 +1,8 @@
+---
+apache_user: apache
+apache_group: apache
+
+dest: /var/www/
+
+git_branch: automat-{{ lookup('env','INSTANCE_ENV') }}
+

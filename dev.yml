@@ -1,6 +1,0 @@
----
-  domain_name: dev.producteev.com
-  role:
-    - webserver
-    - workerserver
-

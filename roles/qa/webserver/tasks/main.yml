@@ -1,9 +1,0 @@
----
-
-- name: create vhost file for qaucteev
-  template: src=qaucteev.conf dest=/etc/httpd/conf.d/qaucteev.conf owner={{ httpd_user }} group={{ httpd_group }} mode=0644
-  notify: restart httpd
-
-- name: create vhost file for the blog
-  template: src=blog-proxy.conf dest=/etc/httpd/conf.d/blog-proxy.conf owner={{ httpd_user }} group={{ httpd_group }} mode=0644
-  notify: restart httpd
