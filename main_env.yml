@@ -1,0 +1,8 @@
+- include: web.yml
+  when: ansible_env.INSTANCE_ROLE == 'web'
+
+- include: worker.yml
+  when: ansible_env.INSTANCE_ROLE == 'worker'
+
+    
+

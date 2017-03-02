@@ -3,6 +3,9 @@
 # install needed packages for ansible 
 yum install -y git ansible
 
+export INSTANCE_ENV=qa
+export INSTANCE_ROLE=web
+
 #Get Producteev ansible playbook
 git clone git@github.com:Producteev/ansible.git
 

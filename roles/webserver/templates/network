@@ -1,0 +1,3 @@
+NETWORKING=yes
+HOSTNAME={{ lookup('env','INSTANCE_ENV') }}.producteev.com
+NOZEROCONF=yes
