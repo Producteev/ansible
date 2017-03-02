@@ -2,10 +2,49 @@
 
 
 - name: Swiftmailer job 1
-  cron: name="Swiftmailer job 1" job="/usr/bin/php /var/www/dev-producteev4/current/app/console swiftmailer:spool:send  --time-limit=59 --env=dev" user={{ apache_user }}
+  cron: name="Swiftmailer job 1" job="/usr/bin/php /var/www/producteev4/current/app/console swiftmailer:spool:send  --time-limit=59 --env=dev" user={{ apache_user }}
 
 - name: Swiftmailer job 2
-  cron: name="Swiftmailer job 2" job="/usr/bin/php /var/www/dev-producteev4/current/app/console swiftmailer:spool:send  --time-limit=59 --env=dev" user={{ apache_user }}
+  cron: name="Swiftmailer job 2" job="/usr/bin/php /var/www/producteev4/current/app/console swiftmailer:spool:send  --time-limit=59 --env=dev" user={{ apache_user }}
 
 - name: Mixpanel events job
-  cron: name="Mixpanel events job" job="/usr/bin/php /var/www/dev-producteev4/current/app/console mixpanel:events:send --max=2000 --env=dev" user={{ apache_user }}
+  cron: name="Mixpanel events job" job="/usr/bin/php /var/www/producteev4/current/app/console mixpanel:events:send --max=2000 --env=dev" user={{ apache_user }}
+
+
+- name: Clear application cache.
+  cron: name:"Clear App Cache" job="/usr/bin/php /var/www/producteev4/current/app/console cache:clear --no-warmup --env=dev" user=root
+
+- name: Clear Mongo cache/Meta Data.
+  cron: name:"Clear Mongo Cache" job="/usr/bin/php /var/www/producteev4/current/app/console doctrine:mongodb:cache:clear-metadata --no-warmup --env=dev" user=root 
+
+- name: Update Mongo DB schema.
+  cron: name:"Clear App Cache" job="/usr/bin/php /var/www/producteev4/current/app/console doctrine:mongodb:schema:update --no-warmup --env=dev" user=root
+
+
+- name: Import Language.
+  cron: name:"Import Language" job="/usr/bin/php /var/www/producteev4/current/app/console producteev:lang:process" user=root
+
+
+- name: JS Build 1.
+  cron: name:"JS Build" job="/usr/bin/php /var/www/producteev4/current/app/console producteev:js:build --uglify"
+
+- name: JS Build 2.
+  cron: name:"JS Build" job="/usr/bin/php /var/www/producteev4/current/app/console producteev:jivejs:build"
+
+
+- name: Assetic Dump.
+  cron: name:"Assetic Dump" job="/usr/bin/php /var/www/producteev4/current/app/conole assetic:dump --env=dev" user=root
+
+
+
+- name: Stop Scheduled Worker.
+  cron: name:"Stop Scheduled Worker" job="/usr/bin/php /var/www/producteev4/current/app/conole producteev:worker --env=dev" user=root
+
+- name: Start Scheduled Worker.
+  cron: name:"Start Scheduled Worker" job="/usr/bin/php /var/www/producteev4/current/app/conole producteev:worker --env=dev" user=root
+
+- name: Stop Worker.
+  cron: name:"Stop Worker" job="/usr/bin/php /var/www/producteev4/current/app/conole producteev:worker --stop --env=dev" user=root
+
+- name: Start Worker.
+  cron: name:"Start Worker" job="/usr/bin/php /var/www/producteev4/current/app/conole producteev:worker --start --env=dev" user=root

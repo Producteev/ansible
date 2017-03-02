@@ -7,3 +7,6 @@
 - name: create vhost file for the blog
   template: src=blog-proxy.conf dest=/etc/httpd/conf.d/dev-blog-proxy.conf owner={{ httpd_user }} group={{ httpd_group }} mode=0644
   notify: restart httpd
+
+- name: Retrieve last Dev version from Nexus.
+  script: ../../template/nexus.sh 
