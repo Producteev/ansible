@@ -11,4 +11,8 @@ echo "localhost ansible_connection=local" >> /etc/ansible/hosts
 cd ./ansible
 ansible-playbook main_env.yml -e "instance_role=web"
 
+sleep 30
+cd /var/www/producteev4
+./change-value.sh
+
 exit 0
