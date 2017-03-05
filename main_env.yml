@@ -1,9 +1,5 @@
 ---
 - include: web.yml
-  when: {{ instance_role }} == "web"
-
-- include: worker.yml
-  when: {{ instance_role }} == "worker"
-
+  when: instance_role == "web"
     
 
