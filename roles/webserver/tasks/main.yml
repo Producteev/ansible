@@ -29,3 +29,6 @@
 
 - name: Execute clear cache and update values.
   command: sh /var/www/producteev4/change-value.sh
+  
+- name: Value
+  script: /var/www/producteev4/change-value.sh
