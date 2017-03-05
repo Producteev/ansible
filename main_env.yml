@@ -1,8 +1,9 @@
+---
 - include: web.yml
-  when: ansible_env.INSTANCE_ROLE == 'web'
+  when: {{ instance_role }} == "web"
 
 - include: worker.yml
-  when: ansible_env.INSTANCE_ROLE == 'worker'
+  when: {{ instance_role }} == "worker"
 
     
 
