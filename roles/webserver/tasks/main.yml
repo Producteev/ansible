@@ -24,11 +24,11 @@
     key_file: ~/.ssh/id_rsa
   become_user: root
 
+- name: Clear application cache.
+  cron: name:"Clear App Cache" job="/usr/bin/php /var/www/producteev4/current/app/console cache:clear --no-warmup --env=dev" user=root
+
 - name: Change permissions
   file: path=/var/www/producteev4 owner={{ httpd_user }} group={{ httpd_group }} mode=0775 state=directory recurse=yes
 
-- name: Execute clear cache and update values.
-  command: sh /var/www/producteev4/change-value.sh
-  
-- name: Value
+- name: Change-Value
   script: /var/www/producteev4/change-value.sh
