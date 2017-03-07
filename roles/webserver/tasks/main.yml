@@ -24,11 +24,6 @@
     key_file: ~/.ssh/id_rsa
   become_user: root
 
-- name: Install Composer
-  composer: 
-    command: install
-    working_dir: /var/www/producteev4
-
 - name: Change-Value
   script: /var/www/producteev4/change-value.sh
 
