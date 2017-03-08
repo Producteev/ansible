@@ -1,18 +1,22 @@
 #!/bin/bash -ex
-
+exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
 # install needed packages for ansible 
 yum install -y git ansible
 
+mkdir -p /opt/aharon
+cd /opt/aharon
 #Get Producteev ansible playbook
 git clone git@github.com:Producteev/ansible.git
-
+cd /opt/aharon/ansible
 echo "localhost ansible_connection=local" >> /etc/ansible/hosts
 
-cd ./ansible
-ansible-playbook main_env.yml -e "instance_role=web instance_env=dev"
+#Ansible Log
+echo "log_path=/var/log/ansible.log" >> /etc/ansible/ansible.cfg
 
-sleep 30
+#Run Playbook with Extra Vars
+ansible-playbook main_env.yml -e "instance_role=web instance_env=qa"
+
 cd /var/www/producteev4
-./change-value.sh
+chmod -R 775 * && chown -R apache:apache *
 
 exit 0

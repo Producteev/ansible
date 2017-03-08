@@ -3,3 +3,5 @@
   when: instance_role == "web"
     
 
+- include: worker.yml
+  when: instance_role == "worker"
