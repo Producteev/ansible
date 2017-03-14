@@ -1,0 +1,14 @@
+---
+
+- name: Download from Nexus
+  maven_artifact:
+      group_id: producteev
+      artifact_id: api
+      extension: backup.tar.gz
+      version: "{{ version }}"
+      repository_url: 'http://54.91.36.184:8081/nexus/content/repositories/dev'
+      username: "{{ nexus_user }}"
+      password: "{{ nexus_password }}"
+      dest: /opt/{{ version }}.tar.gz
+
+

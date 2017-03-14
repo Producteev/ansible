@@ -18,17 +18,14 @@
 - name: Swiftmailer job 2
   command: /usr/bin/php /var/www/producteev4/app/console swiftmailer:spool:send  --time-limit=59 --env=prod
 
-- name: Mixpanel events job
-  command: /usr/bin/php /var/www/producteev4/app/console mixpanel:events:send --max=2000 --env=prod
-
 - name: Clear application cache.
   command: /usr/bin/php /var/www/producteev4/app/console cache:clear --no-warmup --env=prod
 
 - name: Clear Mongo cache/Meta Data.
-  command: /usr/bin/php /var/www/producteev4/app/console doctrine:mongodb:cache:clear-metadata --no-warmup --env=prod
+  command: /usr/bin/php /var/www/producteev4/app/console doctrine:cache:clear-metadata --no-warmup --env=prod
 
 - name: Update Mongo DB schema.
-  command: /usr/bin/php /var/www/producteev4/app/console doctrine:mongodb:schema:update --no-warmup --env=prod
+  command: /usr/bin/php /var/www/producteev4/app/console doctrine:mongodb:schema:update --env=prod
 
 - name: Import Language.
   command: /usr/bin/php /var/www/producteev4/app/console producteev:lang:process
@@ -40,16 +37,16 @@
   command: /usr/bin/php /var/www/producteev4/app/console producteev:jivejs:build
 
 - name: Assetic Dump.
-  command: /usr/bin/php /var/www/producteev4/app/conole assetic:dump --env=prod
+  command: /usr/bin/php /var/www/producteev4/app/console assetic:dump --env=prod
 
 - name: Stop Scheduled Worker.
-  command: /usr/bin/php /var/www/producteev4/app/conole producteev:worker --env=prod
+  command: /usr/bin/php /var/www/producteev4/app/console producteev:workers --stop-scheduled --env=prod
 
 - name: Start Scheduled Worker.
-  command: /usr/bin/php /var/www/producteev4/app/conole producteev:worker --env=prod
+  command: /usr/bin/php /var/www/producteev4/app/console producteev:workers --start-scheduled --env=prod
 
 - name: Stop Worker.
-  command: /usr/bin/php /var/www/producteev4/app/conole producteev:worker --stop --env=prod
+  command: /usr/bin/php /var/www/producteev4/app/console producteev:worker --stop --env=prod
 
 - name: Start Worker.
-  command: /usr/bin/php /var/www/producteev4/app/conole producteev:worker --start --env=prod
+  command: /usr/bin/php /var/www/producteev4/app/console producteev:worker --start --env=prod
