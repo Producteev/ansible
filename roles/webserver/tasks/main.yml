@@ -26,6 +26,9 @@
   become_user: root
 
 - name: Download from Nexus
+  when: 
+    - instance_env == 'qa'
+    - instance_env == 'prod'
   maven_artifact:
       group_id: producteev
       artifact_id: api
@@ -37,11 +40,17 @@
       dest: /opt/{{ version }}.tar.gz
 
 - name: Extract Nexus file
+  when: 
+    - instance_env == 'qa'
+    - instance_env == 'prod'
   unarchive:
     src: /opt/api-{{ version }}.backup.tar.gz
     dest: /var/www
 
 - name: Rename extracted folder
+  when: 
+    - instance_env == 'qa'
+    - instance_env == 'prod'
   command: mv /var/www/web-dev /var/www/producteev4
 
 - name: Change permissions
