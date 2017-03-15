@@ -16,7 +16,7 @@
     - producteev.com.key
 
 - name: Clone GIT repo
-  when: {{ instance_env }} == 'dev'
+  when: instance_env == 'dev'
   git:
     repo: git@github.com:Producteev/producteev4.git
     dest: /var/www/producteev4
