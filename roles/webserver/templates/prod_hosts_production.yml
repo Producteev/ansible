@@ -1,0 +1,15 @@
+parameters:
+    mongodb_replicaset: null
+    mongodb_host: "10.3.1.22"
+    mongodb_name: "automat-db"
+    redis_host:         "qa-redis.3jbc8m.ng.0001.use1.cache.amazonaws.com"
+    elasticsearch_host: "10.3.1.28"
+    elasticsearch_port: "9200"
+    router.request_context.host: "qa.producteev.com"
+    pdt_cdn_http:       "http://dsed98xpmt96o.cloudfront.net"
+    pdt_cdn_https:       "https://dsed98xpmt96o.cloudfront.net"
+    pdt_prod_http_scheme: "https"
+    stripe_api_key: sk_live_6PfMxPI0dUQU0TuTYqTLStRx
+    stripe_publishable_key: pk_live_7gPEDZCbdpxF45N4vd65ac2P
+    box_client_id: "cyol8ibeugqwwfg9qrutnk7zsqmcu6mu"
+    mixpanel_project_token: 9QMs7DEc36hhn39U0QWqE4jUkPpXNHJG
