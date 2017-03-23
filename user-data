@@ -1,22 +1,27 @@
 #!/bin/bash -ex
 exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
-# install needed packages for ansible 
-yum install -y git ansible
 
-mkdir -p /opt/aharon
-cd /opt/aharon
+TAG=`aws autoscaling describe-tags --filters Name=auto-scaling-group,Values=QA-Web-ASG --query 'Tags[1]' |grep Value | awk '{print $2}' |cut -d '"' -f 2`
+
+# install needed packages for ansible 
+yum install -y git ansible python-lxml
+
+cd /opt
+rm -rf /opt/aharon /opt/ansible /var/www/producteev4
+
 #Get Producteev ansible playbook
 git clone git@github.com:Producteev/ansible.git
-cd /opt/aharon/ansible
+cd /opt/ansible
 echo "localhost ansible_connection=local" >> /etc/ansible/hosts
 
 #Ansible Log
 echo "log_path=/var/log/ansible.log" >> /etc/ansible/ansible.cfg
 
 #Run Playbook with Extra Vars
-ansible-playbook main_env.yml -e "instance_role=web instance_env=qa"
+ansible-playbook main_env.yml -e "instance_role=web version=$TAG instance_env=qa"
 
 cd /var/www/producteev4
+./change-value.sh
 chmod -R 775 * && chown -R apache:apache *
 
 exit 0
