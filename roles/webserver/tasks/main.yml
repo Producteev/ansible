@@ -15,36 +15,23 @@
     - producteev.com.pem
     - producteev.com.key
 
-- name: Clone GIT repo
-  when: instance_env == 'dev'
-  git:
-    repo: git@github.com:Producteev/producteev4.git
-    dest: /var/www/producteev4
-    version: automat-{{ instance_env }}
-    accept_hostkey: yes
-    key_file: ~/.ssh/id_rsa
-  become_user: root
-
 - name: Download from Nexus
-  when: (instance_env == 'qa') or (instance_env == 'prod')
   maven_artifact:
       group_id: producteev
       artifact_id: api
       extension: backup.tar.gz
       version: "{{ version }}"
-      repository_url: 'http://54.91.36.184:8081/nexus/content/repositories/dev'
+      repository_url: 'http://54.91.36.184:8081/nexus/content/repositories/{{ instance_env }}'
       username: "{{ nexus_user }}"
       password: "{{ nexus_password }}"
       dest: /opt/{{ version }}.tar.gz
 
 - name: Extract Nexus file
-  when: (instance_env == 'qa') or (instance_env == 'prod')
   unarchive:
     src: /opt/{{ version }}.tar.gz
     dest: /tmp
 
 - name: Rename extracted folder
-  when: (instance_env == 'qa') or (instance_env == 'prod')
   command: cp -r /tmp/dev-web /var/www/producteev4
 
 - name: create vhost file for the blog
