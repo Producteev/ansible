@@ -1,6 +1,6 @@
 parameters:
     mongodb_replicaset: null
-    mongodb_host: "10.4.1.100"
+    mongodb_host: "10.4.1.19"
     mongodb_name: "producteev"
     redis_host:         "prod-redis.3jbc8m.ng.0001.use1.cache.amazonaws.com"
     elasticsearch_host: "10.4.1.203"
